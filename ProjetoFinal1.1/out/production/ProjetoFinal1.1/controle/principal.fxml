@@ -19,7 +19,9 @@
                         <MenuItem text="Autor"/>
                         <MenuItem text="Álbuns"/>
                         <MenuItem text="Música"/>
+                        <MenuItem text="Item"/>
                     </items>
+
 
                 </Menu>
                    <SeparatorMenuItem/>
