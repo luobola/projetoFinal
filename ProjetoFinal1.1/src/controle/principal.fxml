@@ -15,17 +15,15 @@
             <Menu text="Inicio">
                 <Menu text="Cadastrar">
                     <items>
-                        <MenuItem text="Banda"/>
+                        <MenuItem onAction="#acaoCadastraBanda" text="Banda"/>
                         <MenuItem text="Autor"/>
                         <MenuItem text="Álbuns"/>
                         <MenuItem text="Música"/>
                         <MenuItem text="Item"/>
                     </items>
-
-
                 </Menu>
                    <SeparatorMenuItem/>
-                   <MenuItem text="Sair"/>
+                   <MenuItem text="Sair" onAction="#sair"/>
             </Menu>
             <Menu text="Remover"/>
             <Menu text="Buscar"/>
