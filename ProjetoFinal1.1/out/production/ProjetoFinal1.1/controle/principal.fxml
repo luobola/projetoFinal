@@ -15,9 +15,8 @@
             <Menu text="Inicio">
                 <Menu text="Cadastrar">
                     <items>
-                        <MenuItem onAction="#acaoCadastraBanda" text="Banda"/>
-                        <MenuItem text="Autor"/>
-                        <MenuItem text="Álbuns"/>
+                        <MenuItem onAction="#acaoCadastraBanda" text="Autor/Banda"/>
+                        <MenuItem onAction="#acaoCadastraAlbuns" text="Álbuns"/>
                         <MenuItem text="Música"/>
                         <MenuItem text="Item"/>
                     </items>
@@ -29,5 +28,4 @@
             <Menu text="Buscar"/>
         </menus>
     </MenuBar>
-
 </VBox>
