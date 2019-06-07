@@ -29,9 +29,7 @@ public class Cadastro {
     private TextField tfAnoLancamento;
     @FXML
     private TextField tfNumeroDeMusicas;
-
-
-
+    
     @FXML
     private Button btMusicas;
 
@@ -66,6 +64,29 @@ public class Cadastro {
         Musica mus = new Musica(nomeMusica, compositor, duration);
 
         return mus;
+    }
+    @FXML
+    public void acaoAdcionaMusica(){
+        Dialog<ButtonType> dialog = new Dialog<>();
+
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("cadastroMusica.fxml"));
+            Parent content = loader.load();
+            dialog.getDialogPane().setContent(content);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            Optional<ButtonType> resultado = dialog.showAndWait();
+
+            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
+                Cadastro controle = loader.getController();
+
+                Musica albuns = controle.addMusics();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean verificaDuracao(String duracao){
