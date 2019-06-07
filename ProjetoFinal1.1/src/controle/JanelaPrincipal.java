@@ -55,11 +55,11 @@ public class JanelaPrincipal {
             loader.setLocation(getClass().getResource("cadastroAlbuns.fxml"));
             Parent content = loader.load();
             dialog.getDialogPane().setContent(content);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.FINISH);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             Optional<ButtonType> resultado = dialog.showAndWait();
 
-            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
+            if (resultado.isPresent() && resultado.get() == ButtonType.FINISH){
                 Cadastro controle = loader.getController();
 
                 Albuns albuns = controle.coletaInfoAlbum();

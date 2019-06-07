@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -29,7 +30,7 @@ public class Cadastro {
     private TextField tfAnoLancamento;
     @FXML
     private TextField tfNumeroDeMusicas;
-    
+
     @FXML
     private Button btMusicas;
 
@@ -41,8 +42,16 @@ public class Cadastro {
     private TextField tfDuracao;
     @FXML
     private DatePicker dpDuracao;
+    @FXML
+    private ListView<Musica> ltvDescricaoMusica;
+    @FXML
+    private Text txtQtdMusicas;
 
+    Albuns albuns;
 
+    public void listaMusic(){
+
+    }
 
     @FXML
     public Musica addMusics(){
@@ -74,18 +83,50 @@ public class Cadastro {
             loader.setLocation(getClass().getResource("cadastroMusica.fxml"));
             Parent content = loader.load();
             dialog.getDialogPane().setContent(content);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.FINISH);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             Optional<ButtonType> resultado = dialog.showAndWait();
 
-            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
+            if (resultado.isPresent() && resultado.get() == ButtonType.FINISH){
                 Cadastro controle = loader.getController();
-
                 Musica albuns = controle.addMusics();
+            }
+            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
+                Cadastro control = loader.getController();
+                Musica m = control.addMusics();
+                if (m != null){
+                    addMusics();
+                    atualizaTela();
+                }
             }
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void acaoClickLista() {
+        Musica m = ltvDescricaoMusica.getSelectionModel().getSelectedItem();
+        Dialog<ButtonType> dialog = new Dialog<>();
+        if (m != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("listMusic.fxml"));
+                Parent content = loader.load();
+                dialog.getDialogPane().setContent(content);
+                dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
+                dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+                Optional<ButtonType> resultado = dialog.showAndWait();
+
+                if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
+                    atualizaLista();
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -123,8 +164,15 @@ public class Cadastro {
         return ab;
     }
 
+    private void atualizaTela() {
+        atualizaLista();
+        txtQtdMusicas.setText("Total de Pessoas:" + albuns.getMusicas().size());
+    }
 
-
+    private void atualizaLista(){
+        ltvDescricaoMusica.getItems().clear();
+        ltvDescricaoMusica.getItems().addAll(albuns.getMusicas());
+    }
 
 
 }
