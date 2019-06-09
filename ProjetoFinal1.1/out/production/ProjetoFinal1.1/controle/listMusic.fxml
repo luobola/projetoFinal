@@ -9,10 +9,10 @@
 <?import javafx.geometry.Insets?>
 <DialogPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controle.Cadastro" prefHeight="500.0" prefWidth="400.0">
     <content>
-        <ListView fx:id="" prefHeight="500.0" prefWidth="400.0" >
+        <TextArea fx:id="verDescricao" prefHeight="500.0" prefWidth="400.0" >
             <GridPane.margin>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
             </GridPane.margin>
-        </ListView>
+        </TextArea>
     </content>
 </DialogPane>

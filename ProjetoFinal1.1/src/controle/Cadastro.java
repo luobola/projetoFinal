@@ -45,66 +45,13 @@ public class Cadastro {
     @FXML
     private ListView<Musica> ltvDescricaoMusica;
     @FXML
+    private TextArea verDescricao;
+    @FXML
     private Text txtQtdMusicas;
 
     Albuns albuns;
 
-    public void listaMusic(){
 
-    }
-
-    @FXML
-    public Musica addMusics(){
-
-        String nomeMusica = tfNomeMusica.getText();
-        String compositor = tfCompositores.getText();
-        String duracao = tfDuracao.getText();
-
-        if (!verificaDuracao(duracao)){
-           mensagem("Formato de Hora Inválido!!");
-           return null;
-        }
-        String[] tokens = duracao.split(":");
-        int minuto = Integer.valueOf(tokens[0]);
-        int segundo = Integer.valueOf(tokens[1]);
-
-        LocalDateTime duration = LocalDateTime.from(dpDuracao.getValue().atTime(minuto, segundo));
-
-        Musica mus = new Musica(nomeMusica, compositor, duration);
-
-        return mus;
-    }
-    @FXML
-    public void acaoAdcionaMusica(){
-        Dialog<ButtonType> dialog = new Dialog<>();
-
-        try{
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("cadastroMusica.fxml"));
-            Parent content = loader.load();
-            dialog.getDialogPane().setContent(content);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.FINISH);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-            Optional<ButtonType> resultado = dialog.showAndWait();
-
-            if (resultado.isPresent() && resultado.get() == ButtonType.FINISH){
-                Cadastro controle = loader.getController();
-                Musica albuns = controle.addMusics();
-            }
-            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
-                Cadastro control = loader.getController();
-                Musica m = control.addMusics();
-                if (m != null){
-                    addMusics();
-                    atualizaTela();
-                }
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     private void acaoClickLista() {
@@ -122,12 +69,33 @@ public class Cadastro {
 
                 if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
                     atualizaLista();
+                    verDescricao.setText(m.otoString());
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+    @FXML
+    public Musica addMusics(){
+
+        String nomeMusica = tfNomeMusica.getText();
+        String compositor = tfCompositores.getText();
+        String duracao = tfDuracao.getText();
+
+        if (!verificaDuracao(duracao)){
+            mensagem("Formato de Hora Inválido!!");
+            return null;
+        }
+        String[] tokens = duracao.split(":");
+        int minuto = Integer.valueOf(tokens[0]);
+        int segundo = Integer.valueOf(tokens[1]);
+
+        LocalDateTime duration = LocalDateTime.from(dpDuracao.getValue().atTime(minuto, segundo));
+
+        Musica mus = new Musica(nomeMusica, compositor, duration);
+
+        return mus;
     }
 
     private boolean verificaDuracao(String duracao){
@@ -164,7 +132,7 @@ public class Cadastro {
         return ab;
     }
 
-    private void atualizaTela() {
+    void atualizaTela() {
         atualizaLista();
         txtQtdMusicas.setText("Total de Pessoas:" + albuns.getMusicas().size());
     }

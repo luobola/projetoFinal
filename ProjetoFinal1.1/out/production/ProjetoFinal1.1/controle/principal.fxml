@@ -17,7 +17,7 @@
                     <items>
                         <MenuItem onAction="#acaoCadastraBanda" text="Autor/Banda"/>
                         <MenuItem onAction="#acaoCadastraAlbuns" text="Álbuns"/>
-                        <MenuItem text="Música"/>
+                        <MenuItem onAction="#acaoAdcionaMusica" text="Música"/>
                         <MenuItem text="Item"/>
                     </items>
                 </Menu>
