@@ -45,6 +45,8 @@ public class Cadastro {
     @FXML
     private ListView<Musica> ltvDescricaoMusica;
     @FXML
+    private TextArea verDescricao;
+    @FXML
     private Text txtQtdMusicas;
 
     Albuns albuns;
@@ -67,9 +69,8 @@ public class Cadastro {
 
                 if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
                     atualizaLista();
-
+                    verDescricao.setText(m.otoString());
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
