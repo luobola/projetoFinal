@@ -53,4 +53,8 @@ public class Albuns {
                 "\nAno De Lancamento=" + anoLancamento +
                 "\nNúmero de Musicas=" + numeroMusica;
     }
+
+    public String otoString() {
+        return "\nNome=" + nome;
+    }
 }
