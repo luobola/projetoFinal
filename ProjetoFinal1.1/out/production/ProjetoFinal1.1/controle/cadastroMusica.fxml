@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<DialogPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controle.Cadastro">
+
+    <content>
+        <GridPane hgap="5" vgap="5">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </GridPane.margin>
+            <TextField promptText="Nome da Música..."  GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <GridPane.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </GridPane.margin>
+            </TextField>
+            <TextField promptText="Compositor" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <GridPane.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </GridPane.margin>
+            </TextField>
+            <HBox spacing="3" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </GridPane.margin>
+                <TextField fx:id="tfDuracao" promptText="00:00" prefColumnCount="5"/>
+            </HBox>
+            <ListView fx:id="ltvDescricaoMusica" onMouseClicked="#acaoClickLista" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <GridPane.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </GridPane.margin>
+            </ListView>
+
+        </GridPane>
+    </content>
+
+</DialogPane>

@@ -1,13 +1,15 @@
 package Entity;
 
+import java.time.LocalDateTime;
+
 public class Musica {
 
 
     private String nome;
     private String compositor;
-    private double duracao;
+    private LocalDateTime duracao;
 
-    public Musica(String nome, String compositor, double duracao) {
+    public Musica(String nome, String compositor, LocalDateTime duracao) {
         this.nome = nome;
         this.compositor = compositor;
         this.duracao = duracao;
@@ -29,17 +31,21 @@ public class Musica {
         this.compositor = compositor;
     }
 
-    public double getDuracao() {
+    public LocalDateTime getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(double duracao) {
+    public void setDuracao(LocalDateTime duracao) {
         this.duracao = duracao;
     }
 
     @Override
     public String toString() {
-        return  "\nNome=" + nome +
+        return nome;
+    }
+
+    public String otoString() {
+        return  "\nNome='" + nome +
                 "\nCompositor=" + compositor +
                 "\nDuracao=" + duracao;
     }
