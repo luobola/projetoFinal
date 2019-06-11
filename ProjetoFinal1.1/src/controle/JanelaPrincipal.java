@@ -14,6 +14,7 @@ import java.util.Optional;
 
 public class JanelaPrincipal {
 
+    Albuns albuns;
 
     @FXML
     private void acaoCadastraBanda(){
@@ -43,6 +44,7 @@ public class JanelaPrincipal {
         }
     }
 
+
     @FXML
     public void acaoCadastraAlbuns(){
         Dialog<ButtonType> dialog = new Dialog<>();
@@ -52,11 +54,11 @@ public class JanelaPrincipal {
             loader.setLocation(getClass().getResource("cadastroAlbuns.fxml"));
             Parent content = loader.load();
             dialog.getDialogPane().setContent(content);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.FINISH);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             Optional<ButtonType> resultado = dialog.showAndWait();
 
-            if (resultado.isPresent() && resultado.get() == ButtonType.FINISH){
+            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
                 Cadastro controle = loader.getController();
 
                 Albuns albuns = controle.coletaInfoAlbum();
@@ -82,15 +84,11 @@ public class JanelaPrincipal {
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             Optional<ButtonType> resultado = dialog.showAndWait();
 
-            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
-                Cadastro control = loader.getController();
-                Musica m = control.addMusics();
-                if (m != null){
-                    control.addMusics();
-                    control.atualizaTela();
-                }
-            }
+            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
+               Cadastro control = loader.getController();
+               control.addMusics();
 
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

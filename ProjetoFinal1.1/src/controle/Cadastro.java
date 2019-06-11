@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
+import java.beans.EventHandler;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -51,72 +52,22 @@ public class Cadastro {
 
     Albuns albuns;
 
-
-
     @FXML
     private void acaoClickLista() {
         Musica m = ltvDescricaoMusica.getSelectionModel().getSelectedItem();
         Dialog<ButtonType> dialog = new Dialog<>();
-        if (m != null) {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("listMusic.fxml"));
-                Parent content = loader.load();
-                dialog.getDialogPane().setContent(content);
-                dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
-                dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-                Optional<ButtonType> resultado = dialog.showAndWait();
 
-                if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
-                    atualizaLista();
-                    verDescricao.setText(m.otoString());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
-    @FXML
-    public Musica addMusics(){
-
-        String nomeMusica = tfNomeMusica.getText();
-        String compositor = tfCompositores.getText();
-        String duracao = tfDuracao.getText();
-
-        if (!verificaDuracao(duracao)){
-            mensagem("Formato de Hora Inválido!!");
-            return null;
-        }
-        String[] tokens = duracao.split(":");
-        int minuto = Integer.valueOf(tokens[0]);
-        int segundo = Integer.valueOf(tokens[1]);
-
-        LocalDateTime duration = LocalDateTime.from(dpDuracao.getValue().atTime(minuto, segundo));
-
-        Musica mus = new Musica(nomeMusica, compositor, duration);
-
-        return mus;
-    }
-
-    private boolean verificaDuracao(String duracao){
-
-        Pattern pattern = Pattern.compile("\\d\\d:\\d\\d");
-        Matcher m = pattern.matcher(duracao);
-
-        return m.find();
-    }
-    private void mensagem(String msg){
-        Alert a = new Alert(Alert.AlertType.INFORMATION, msg);
-        a.showAndWait();
-    }
-
     @FXML
     public AutorBanda coletaInformacao(){
         String nome = tfNomeBanda.getText();
         String cidadeOrigem = tfCidadeOrigem.getText();
-        double anoNascimento = Double.parseDouble(tfAnoNascimento.getText());
+        Integer anoNascimento = Integer.parseInt(tfAnoNascimento.getText());
 
         AutorBanda ab = new AutorBanda(nome, cidadeOrigem, anoNascimento);
+
+        System.out.println(ab.toString());
+
 
         return ab;
     }
@@ -127,20 +78,20 @@ public class Cadastro {
         Integer anoLancamento = Integer.parseInt(tfAnoLancamento.getText());
         Integer numeroMusicas = Integer.parseInt(tfNumeroDeMusicas.getText());
 
-
-        Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas);
+           Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas);
+        System.out.println(ab.toString());
         return ab;
     }
 
-    void atualizaTela() {
-        atualizaLista();
-        txtQtdMusicas.setText("Total de Pessoas:" + albuns.getMusicas().size());
-    }
+    @FXML
+    public void addMusics(){
 
-    private void atualizaLista(){
-        ltvDescricaoMusica.getItems().clear();
-        ltvDescricaoMusica.getItems().addAll(albuns.getMusicas());
-    }
+        String nomeMusica = tfNomeMusica.getText();
+        String compositor = tfCompositores.getText();
+        String duracao = tfDuracao.getText();
 
+
+
+    }
 
 }
