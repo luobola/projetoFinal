@@ -15,20 +15,27 @@ public class Albuns {
         this.anoLancamento = anoLancamento;
         this.numeroMusica = numeroMusica;
     }
+    public  Albuns (){
+        musicas = new ArrayList<>();
+    }
 
+    public void cadastrarMusica(Musica m){
+        musicas.add(m);
+    }
+
+    public void lista(Musica m){
+        musicas.add(m);
+    }
     public ArrayList<AutorBanda> getAutorBandas() {
-        return autorBandas;
+        return new ArrayList<>(autorBandas);
     }
 
     public void setAutorBandas(ArrayList<AutorBanda> autorBandas) {
         this.autorBandas = autorBandas;
     }
 
-    /*public void addMusicas(String nomeMusica, String compo, String duracao){
-        musicas.add(new Musica(nomeMusica, compo, duracao));
-    }*/
     public ArrayList<Musica> getMusicas() {
-        return musicas;
+        return new ArrayList<>(musicas);
     }
 
     public void setMusicas(ArrayList<Musica> musicas) {
@@ -61,11 +68,11 @@ public class Albuns {
 
     @Override
     public String toString() {
-        return  "nome='" + nome + '\'' +
-                ", anoLancamento=" + anoLancamento +
-                ", numeroMusica=" + numeroMusica +
-                ", musicas=" + musicas +
-                ", autorBandas=" + autorBandas;
+        return  "\nNome=" + nome +
+                "\nAno De Lancamento=" + anoLancamento +
+                "\nNumero De Musica=" + numeroMusica +
+                "\nMusicas=" + musicas +
+                "\nAutor/Bandas=" + autorBandas;
     }
 
     public String otoString() {

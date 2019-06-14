@@ -44,20 +44,50 @@ public class Cadastro {
     @FXML
     private DatePicker dpDuracao;
     @FXML
-    private ListView<Musica> ltvDescricaoMusica;
+    private ListView<Musica> ltvMusica;
     @FXML
     private TextArea verDescricao;
     @FXML
     private Text txtQtdMusicas;
 
+    public ListView<Musica> getLtvMusica() {
+        return ltvMusica;
+    }
+
+    public TextArea getVerDescricao() {
+        return verDescricao;
+    }
+
+    public Text getTxtQtdMusicas() {
+        return txtQtdMusicas;
+    }
+
     Albuns albuns;
 
     @FXML
     private void acaoClickLista() {
-        Musica m = ltvDescricaoMusica.getSelectionModel().getSelectedItem();
+        Musica m = ltvMusica.getSelectionModel().getSelectedItem();
         Dialog<ButtonType> dialog = new Dialog<>();
 
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("listMusic.fxml"));
+            Parent content = loader.load();
+            dialog.getDialogPane().setContent(content);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            Optional<ButtonType> resultado = dialog.showAndWait();
+
+            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
+                if (m != null)
+                verDescricao.setText(m.otoString());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
     @FXML
     public AutorBanda coletaInformacao(){
         String nome = tfNomeBanda.getText();
@@ -66,7 +96,7 @@ public class Cadastro {
 
         AutorBanda ab = new AutorBanda(nome, cidadeOrigem, anoNascimento);
 
-        System.out.println(ab.toString());
+        //System.out.println(ab.toString());
 
 
         return ab;
@@ -79,19 +109,22 @@ public class Cadastro {
         Integer numeroMusicas = Integer.parseInt(tfNumeroDeMusicas.getText());
 
            Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas);
-        System.out.println(ab.toString());
+        //System.out.println(ab.toString());
         return ab;
     }
 
     @FXML
-    public void addMusics(){
+    public Musica addMusics(){
 
         String nomeMusica = tfNomeMusica.getText();
         String compositor = tfCompositores.getText();
         String duracao = tfDuracao.getText();
 
+        Musica musica = new Musica(nomeMusica,compositor,duracao);
 
-
+        return musica;
     }
+
+
 
 }

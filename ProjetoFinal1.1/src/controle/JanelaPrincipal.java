@@ -15,6 +15,8 @@ import java.util.Optional;
 public class JanelaPrincipal {
 
     Albuns albuns;
+    Cadastro cadastro;
+
 
     @FXML
     private void acaoCadastraBanda(){
@@ -85,9 +87,12 @@ public class JanelaPrincipal {
             Optional<ButtonType> resultado = dialog.showAndWait();
 
             if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
-               Cadastro control = loader.getController();
-               control.addMusics();
-
+                Cadastro control = loader.getController();
+                Musica m = control.addMusics();
+                if (m != null){
+                    albuns.cadastrarMusica(m);
+                    atualizaTela();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -98,5 +103,16 @@ public class JanelaPrincipal {
     private void sair(){
         Platform.exit();
     }
+
+    private void atualizaTela() {
+        atualizaLista();
+        cadastro.getTxtQtdMusicas().setText("Total de Pessoas:" + albuns.getMusicas().size());
+    }
+
+    private void atualizaLista(){
+        cadastro.getLtvMusica().getItems().clear();
+        cadastro.getLtvMusica().getItems().addAll(albuns.getMusicas());
+    }
+
 
 }
