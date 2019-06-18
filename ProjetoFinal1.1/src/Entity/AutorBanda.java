@@ -4,9 +4,9 @@ public class AutorBanda {
 
     private String nome;
     private String cidadeOrigem;
-    private double nascimento;
+    private int nascimento;
 
-    public AutorBanda(String nome, String cidadeOrigem, double nascimento) {
+    public AutorBanda(String nome, String cidadeOrigem, int nascimento) {
         this.nome = nome;
         this.cidadeOrigem = cidadeOrigem;
         this.nascimento = nascimento;
@@ -28,11 +28,11 @@ public class AutorBanda {
         this.cidadeOrigem = cidadeOrigem;
     }
 
-    public double getNascimento() {
+    public int getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(double nascimento) {
+    public void setNascimento(int nascimento) {
         this.nascimento = nascimento;
     }
 

@@ -1,15 +1,13 @@
 package Entity;
 
-import java.time.LocalDateTime;
-
 public class Musica {
 
 
     private String nome;
     private String compositor;
-    private LocalDateTime duracao;
+    private String duracao;
 
-    public Musica(String nome, String compositor, LocalDateTime duracao) {
+    public Musica(String nome, String compositor, String duracao) {
         this.nome = nome;
         this.compositor = compositor;
         this.duracao = duracao;
@@ -31,11 +29,11 @@ public class Musica {
         this.compositor = compositor;
     }
 
-    public LocalDateTime getDuracao() {
+    public String getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(LocalDateTime duracao) {
+    public void setDuracao(String duracao) {
         this.duracao = duracao;
     }
 

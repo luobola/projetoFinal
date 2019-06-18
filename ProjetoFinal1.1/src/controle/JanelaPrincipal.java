@@ -14,6 +14,9 @@ import java.util.Optional;
 
 public class JanelaPrincipal {
 
+    Albuns albuns;
+    Cadastro cadastro;
+
 
     @FXML
     private void acaoCadastraBanda(){
@@ -43,6 +46,7 @@ public class JanelaPrincipal {
         }
     }
 
+
     @FXML
     public void acaoCadastraAlbuns(){
         Dialog<ButtonType> dialog = new Dialog<>();
@@ -52,11 +56,11 @@ public class JanelaPrincipal {
             loader.setLocation(getClass().getResource("cadastroAlbuns.fxml"));
             Parent content = loader.load();
             dialog.getDialogPane().setContent(content);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.FINISH);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             Optional<ButtonType> resultado = dialog.showAndWait();
 
-            if (resultado.isPresent() && resultado.get() == ButtonType.FINISH){
+            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
                 Cadastro controle = loader.getController();
 
                 Albuns albuns = controle.coletaInfoAlbum();
@@ -82,15 +86,14 @@ public class JanelaPrincipal {
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             Optional<ButtonType> resultado = dialog.showAndWait();
 
-            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
+            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
                 Cadastro control = loader.getController();
                 Musica m = control.addMusics();
                 if (m != null){
-                    control.addMusics();
-                    control.atualizaTela();
+                    albuns.cadastrarMusica(m);
+                    atualizaTela();
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,5 +103,16 @@ public class JanelaPrincipal {
     private void sair(){
         Platform.exit();
     }
+
+    private void atualizaTela() {
+        atualizaLista();
+        cadastro.getTxtQtdMusicas().setText("Total de Pessoas:" + albuns.getMusicas().size());
+    }
+
+    private void atualizaLista(){
+        cadastro.getLtvMusica().getItems().clear();
+        cadastro.getLtvMusica().getItems().addAll(albuns.getMusicas());
+    }
+
 
 }
