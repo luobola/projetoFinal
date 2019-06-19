@@ -64,6 +64,7 @@ public class JanelaPrincipal {
                 Cadastro controle = loader.getController();
 
                 Albuns albuns = controle.coletaInfoAlbum();
+               // cadastro.atualizaTela();
             }
 
 
@@ -88,11 +89,8 @@ public class JanelaPrincipal {
 
             if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
                 Cadastro control = loader.getController();
-                Musica m = control.addMusics();
-                if (m != null){
-                    albuns.cadastrarMusica(m);
-                    atualizaTela();
-                }
+                control.addMusics();
+               // cadastro.atualizaTela();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,16 +101,5 @@ public class JanelaPrincipal {
     private void sair(){
         Platform.exit();
     }
-
-    private void atualizaTela() {
-        atualizaLista();
-        cadastro.getTxtQtdMusicas().setText("Total de Pessoas:" + albuns.getMusicas().size());
-    }
-
-    private void atualizaLista(){
-        cadastro.getLtvMusica().getItems().clear();
-        cadastro.getLtvMusica().getItems().addAll(albuns.getMusicas());
-    }
-
 
 }

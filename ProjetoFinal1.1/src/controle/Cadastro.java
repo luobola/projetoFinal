@@ -4,15 +4,17 @@ package controle;
 import Entity.Albuns;
 import Entity.AutorBanda;
 import Entity.Musica;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
-import java.beans.EventHandler;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -80,7 +82,8 @@ public class Cadastro {
 
             if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
                 if (m != null)
-                verDescricao.setText(m.otoString());
+                atualizaTela();
+                verDescricao.setText(m.toString());
             }
 
         } catch (IOException e) {
@@ -104,12 +107,14 @@ public class Cadastro {
 
     @FXML
     public Albuns coletaInfoAlbum(){
+
         String nomeAlbum = tfNomeAlbum.getText();
         Integer anoLancamento = Integer.parseInt(tfAnoLancamento.getText());
         Integer numeroMusicas = Integer.parseInt(tfNumeroDeMusicas.getText());
 
-           Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas);
-        //System.out.println(ab.toString());
+
+        Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas,addMusics());
+        System.out.println(ab.toString());
         return ab;
     }
 
@@ -120,11 +125,16 @@ public class Cadastro {
         String compositor = tfCompositores.getText();
         String duracao = tfDuracao.getText();
 
-        Musica musica = new Musica(nomeMusica,compositor,duracao);
 
-        return musica;
+       return new Musica(nomeMusica, compositor, duracao);
+    }
+    public void atualizaTela() {
+        atualizaLista();
+        getTxtQtdMusicas().setText("Total de Pessoas:" + albuns.getMusicas().size());
     }
 
-
-
+    private void atualizaLista(){
+        getLtvMusica().getItems().clear();
+        getLtvMusica().getItems().addAll(albuns.getMusicas());
+    }
 }
