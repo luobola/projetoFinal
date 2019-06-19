@@ -7,25 +7,16 @@ public class Albuns {
     private String nome;
     private double anoLancamento;
     private int numeroMusica;
-    private ArrayList<Musica> musicas;
-    private ArrayList<AutorBanda> autorBandas;
+    private ArrayList<Musica> musicas = new ArrayList<>();
+    private ArrayList<AutorBanda> autorBandas = new ArrayList<>();
 
-    public Albuns(String nome, double anoLancamento, int numeroMusica) {
+    public Albuns(String nome, double anoLancamento, int numeroMusica, Musica musicas) {
         this.nome = nome;
         this.anoLancamento = anoLancamento;
         this.numeroMusica = numeroMusica;
-    }
-    public  Albuns (){
-        musicas = new ArrayList<>();
+        this.getMusicas().add(musicas);
     }
 
-    public void cadastrarMusica(Musica m){
-        musicas.add(m);
-    }
-
-    public void lista(Musica m){
-        musicas.add(m);
-    }
     public ArrayList<AutorBanda> getAutorBandas() {
         return new ArrayList<>(autorBandas);
     }
@@ -71,7 +62,7 @@ public class Albuns {
         return  "\nNome=" + nome +
                 "\nAno De Lancamento=" + anoLancamento +
                 "\nNumero De Musica=" + numeroMusica +
-                "\nMusicas=" + musicas +
+                "\nMusicas=" + this.musicas+
                 "\nAutor/Bandas=" + autorBandas;
     }
 
