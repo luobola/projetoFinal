@@ -73,30 +73,6 @@ public class JanelaPrincipal {
         }
     }
 
-
-    @FXML
-    public void acaoAdcionaMusica(){
-        Dialog<ButtonType> dialog = new Dialog<>();
-
-        try{
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("cadastroMusica.fxml"));
-            Parent content = loader.load();
-            dialog.getDialogPane().setContent(content);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-            Optional<ButtonType> resultado = dialog.showAndWait();
-
-            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
-                Cadastro control = loader.getController();
-                control.addMusics();
-               // cadastro.atualizaTela();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @FXML
     private void sair(){
         Platform.exit();
