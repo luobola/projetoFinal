@@ -10,11 +10,10 @@ public class Albuns {
     private ArrayList<Musica> musicas = new ArrayList<>();
     private ArrayList<AutorBanda> autorBandas = new ArrayList<>();
 
-    public Albuns(String nome, double anoLancamento, int numeroMusica, ArrayList<Musica> musicas) {
+    public Albuns(String nome, double anoLancamento, int numeroMusica) {
         this.nome = nome;
         this.anoLancamento = anoLancamento;
         this.numeroMusica = numeroMusica;
-        this.musicas = musicas;
     }
 
     public ArrayList<AutorBanda> getAutorBandas() {

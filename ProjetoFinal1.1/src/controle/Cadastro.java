@@ -52,8 +52,6 @@ public class Cadastro {
     @FXML
     private Text txtQtdMusicas;
 
-    public Cadastro() throws FileNotFoundException {
-    }
 
     public ListView<Musica> getLtvMusica() {
         return ltvMusica;
@@ -116,23 +114,24 @@ public class Cadastro {
         Integer numeroMusicas = Integer.parseInt(tfNumeroDeMusicas.getText());
 
 
-        Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas,addMusics());
+        Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas);
         System.out.println(ab.toString());
         return ab;
     }
 
     @FXML
-    public ArrayList<Musica> addMusics(){
+    public boolean addMusics(){
 
-        ArrayList<Musica> musicas = new ArrayList<Musica>();
         String nomeMusica = tfNomeMusica.getText();
         String compositor = tfCompositores.getText();
         String duracao = tfDuracao.getText();
 
 
-        musicas.add(new Musica(nomeMusica, compositor, duracao));
-
-        return musicas;
+        if (albuns.getMusicas().add(new Musica(nomeMusica, compositor, duracao))){
+            System.out.println("cadastrado com sucesso!!");
+            return true;
+        }
+         return false;
     }
 
     public void atualizaTela() {
@@ -161,7 +160,6 @@ public class Cadastro {
             if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
                 Cadastro control = loader.getController();
                 addMusics();
-                // cadastro.atualizaTela();
             }
         } catch (IOException e) {
             e.printStackTrace();
