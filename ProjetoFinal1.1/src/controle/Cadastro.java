@@ -113,6 +113,7 @@ public class Cadastro {
         Integer anoLancamento = Integer.parseInt(tfAnoLancamento.getText());
         Integer numeroMusicas = Integer.parseInt(tfNumeroDeMusicas.getText());
 
+        albuns.getMusicas().add(addMusics());
 
         Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas);
         System.out.println(ab.toString());
@@ -120,18 +121,13 @@ public class Cadastro {
     }
 
     @FXML
-    public boolean addMusics(){
+    public Musica addMusics(){
 
         String nomeMusica = tfNomeMusica.getText();
         String compositor = tfCompositores.getText();
         String duracao = tfDuracao.getText();
 
-
-        if (albuns.getMusicas().add(new Musica(nomeMusica, compositor, duracao))){
-            System.out.println("cadastrado com sucesso!!");
-            return true;
-        }
-         return false;
+         return new Musica(nomeMusica, compositor, duracao);
     }
 
     public void atualizaTela() {
@@ -159,7 +155,7 @@ public class Cadastro {
 
             if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
                 Cadastro control = loader.getController();
-                addMusics();
+                Musica musica = control.addMusics();
             }
         } catch (IOException e) {
             e.printStackTrace();
