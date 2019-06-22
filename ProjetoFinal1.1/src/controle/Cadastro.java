@@ -4,9 +4,7 @@ package controle;
 import Entity.Albuns;
 import Entity.AutorBanda;
 import Entity.Musica;
-import com.sun.org.apache.bcel.internal.generic.IADD;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,11 +16,9 @@ import javafx.scene.text.Text;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class Cadastro {
 
@@ -38,12 +34,8 @@ public class Cadastro {
     private TextField tfAnoLancamento;
     @FXML
     private TextField tfNumeroDeMusicas;
-
-    FileInputStream input = new FileInputStream("/Image/salveButton.jpg");
-    Image image = new Image(input);
-    ImageView imageView = new ImageView(image);
     @FXML
-    private Button btMusicas = new Button("Salvar", imageView);
+    private Button btMusicas;
 
     @FXML
     private TextField tfNomeMusica;

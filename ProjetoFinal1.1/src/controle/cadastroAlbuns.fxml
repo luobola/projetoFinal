@@ -46,12 +46,24 @@
             <Separator GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Separator GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Separator GridPane.columnIndex="3" GridPane.rowIndex="3" />
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
         </GridPane>
    </header>
    <content>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <ListView fx:id="ltvMusica" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="ltvMusica" onMouseClicked="#acaoClickLista" prefHeight="200.0" prefWidth="200.0" />
             <Button fx:id="btMusicas" onAction="#acaoAdcionaMusica" prefHeight="25.0" prefWidth="120.0" text="Adicionar Musica">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
