@@ -4,20 +4,21 @@ package controle;
 import Entity.Albuns;
 import Entity.AutorBanda;
 import Entity.Musica;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class Cadastro {
 
@@ -33,7 +34,6 @@ public class Cadastro {
     private TextField tfAnoLancamento;
     @FXML
     private TextField tfNumeroDeMusicas;
-
     @FXML
     private Button btMusicas;
 
@@ -51,6 +51,7 @@ public class Cadastro {
     private TextArea verDescricao;
     @FXML
     private Text txtQtdMusicas;
+
 
     public ListView<Musica> getLtvMusica() {
         return ltvMusica;
@@ -112,8 +113,9 @@ public class Cadastro {
         Integer anoLancamento = Integer.parseInt(tfAnoLancamento.getText());
         Integer numeroMusicas = Integer.parseInt(tfNumeroDeMusicas.getText());
 
+        albuns.getMusicas().add(addMusics());
 
-        Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas,addMusics());
+        Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas);
         System.out.println(ab.toString());
         return ab;
     }
@@ -125,9 +127,9 @@ public class Cadastro {
         String compositor = tfCompositores.getText();
         String duracao = tfDuracao.getText();
 
-
-       return new Musica(nomeMusica, compositor, duracao);
+         return new Musica(nomeMusica, compositor, duracao);
     }
+
     public void atualizaTela() {
         atualizaLista();
         getTxtQtdMusicas().setText("Total de Pessoas:" + albuns.getMusicas().size());
@@ -136,5 +138,27 @@ public class Cadastro {
     private void atualizaLista(){
         getLtvMusica().getItems().clear();
         getLtvMusica().getItems().addAll(albuns.getMusicas());
+    }
+
+    @FXML
+    public void acaoAdcionaMusica(){
+        Dialog<ButtonType> dialog = new Dialog<>();
+
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("cadastroMusica.fxml"));
+            Parent content = loader.load();
+            dialog.getDialogPane().setContent(content);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            Optional<ButtonType> resultado = dialog.showAndWait();
+
+            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
+                Cadastro control = loader.getController();
+                Musica musica = control.addMusics();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
