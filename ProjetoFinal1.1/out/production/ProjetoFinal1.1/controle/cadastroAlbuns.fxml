@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
 <DialogPane prefHeight="350.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controle.Cadastro">
    <header>
@@ -46,33 +48,43 @@
             <Separator GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Separator GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Separator GridPane.columnIndex="3" GridPane.rowIndex="3" />
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
         </GridPane>
    </header>
    <content>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <ListView fx:id="ltvMusica" onMouseClicked="#acaoClickLista" prefHeight="200.0" prefWidth="200.0" />
-            <Button fx:id="btMusicas" onAction="#acaoAdcionaMusica" prefHeight="25.0" prefWidth="120.0" text="Adicionar Musica">
+            <VBox prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ListView fx:id="ltvMusica" onMouseClicked="#acaoClickLista" prefHeight="200.0" prefWidth="300.0" />
+                   <Text fx:id="txtQtdMusicas" text="Total de Músicas">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin></Text>
+               </children>
+            </VBox>
+            <Button fx:id="btMusicas" onAction="#addMusics" prefHeight="25.0" prefWidth="120.0" text="Adicionar Musica">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
+            <VBox prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="tfNomeMusica" promptText="Nome Da Musica">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="tfCompositores" promptText="Compositor">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="tfDuracao" promptText="Duração">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin></TextField>
+               </children></VBox>
          </children>
       </HBox>
    </content>
-
-
-
 </DialogPane>

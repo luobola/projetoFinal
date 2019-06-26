@@ -10,10 +10,14 @@ public class Albuns {
     private ArrayList<Musica> musicas = new ArrayList<>();
     private ArrayList<AutorBanda> autorBandas = new ArrayList<>();
 
-    public Albuns(String nome, double anoLancamento, int numeroMusica) {
+    public Albuns(String nome, double anoLancamento, int numeroMusica, ArrayList<Musica> musicas) {
         this.nome = nome;
         this.anoLancamento = anoLancamento;
         this.numeroMusica = numeroMusica;
+        this.musicas = musicas;
+    }
+    public Albuns(){
+
     }
 
     public ArrayList<AutorBanda> getAutorBandas() {
@@ -56,15 +60,22 @@ public class Albuns {
         this.numeroMusica = numeroMusica;
     }
 
+    public String lista(){
+        String str="";
+
+        for(Musica m:musicas){
+            str += m.toString()+"\n";
+        }
+        return str;
+    }
+
     @Override
     public String toString() {
-        return "Albuns{" +
-                "nome='" + nome + '\'' +
-                ", anoLancamento=" + anoLancamento +
-                ", numeroMusica=" + numeroMusica +
-                ", musicas=" + musicas +
-                ", autorBandas=" + autorBandas +
-                '}';
+        return  "\n Nome=" + nome +
+                "\n Ano De Lancamento=" + anoLancamento +
+                "\n Número De Musica=" + numeroMusica +
+                "\n Músicas[" + lista() + "]" +
+                "\n autorBandas=" + autorBandas;
     }
 
     public String otoString() {

@@ -39,9 +39,9 @@ public class Musica {
 
     @Override
     public String toString() {
-        return "\nNome= " + nome +
-                " Compositor= " + compositor +
-                " Duracao= " + duracao;
+        return " Nome= " + nome +
+                ", Compositor= " + compositor +
+                ", Duracao= " + duracao;
     }
 
     public String otoString() {
