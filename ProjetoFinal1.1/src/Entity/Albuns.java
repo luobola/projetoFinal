@@ -1,9 +1,12 @@
 package Entity;
 
+import controle.Cadastro;
+
 import java.util.ArrayList;
 
 public class Albuns {
 
+    Cadastro cadastro;
     private String nome;
     private double anoLancamento;
     private int numeroMusica;

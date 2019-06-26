@@ -63,6 +63,7 @@ public class JanelaPrincipal {
             if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
                 Cadastro controle = loader.getController();
                 Albuns albuns = controle.coletaInfoAlbum();
+
             }
         } catch (IOException e) {
             e.printStackTrace();

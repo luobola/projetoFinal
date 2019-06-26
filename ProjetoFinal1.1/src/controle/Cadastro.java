@@ -55,6 +55,30 @@ public class Cadastro {
     Albuns albuns = new Albuns();
     ArrayList<Musica> mus = new ArrayList<>();
 
+    public TextField getTfNomeAlbum() {
+        return tfNomeAlbum;
+    }
+
+    public TextField getTfAnoLancamento() {
+        return tfAnoLancamento;
+    }
+
+    public TextField getTfNumeroDeMusicas() {
+        return tfNumeroDeMusicas;
+    }
+
+    public TextField getTfNomeMusica() {
+        return tfNomeMusica;
+    }
+
+    public TextField getTfCompositores() {
+        return tfCompositores;
+    }
+
+    public TextField getTfDuracao() {
+        return tfDuracao;
+    }
+
     @FXML
     private void acaoClickLista() {
         Musica m = ltvMusica.getSelectionModel().getSelectedItem();
@@ -98,38 +122,32 @@ public class Cadastro {
     public Albuns coletaInfoAlbum(){
 
 
+
+
         String nomeAlbum = tfNomeAlbum.getText();
         Integer anoLancamento = Integer.parseInt(tfAnoLancamento.getText());
         Integer numeroMusicas = Integer.parseInt(tfNumeroDeMusicas.getText());
 
 
 
-        Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas,cadastrarMusica());
+        Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas,addMusics());
 
         System.out.println(ab.toString());
         return ab;
     }
 
     @FXML
-    public Musica addMusics(){
+    public ArrayList<Musica> addMusics() {
 
-
+        ArrayList<Musica> m = new ArrayList<>();
         String nomeMusica = tfNomeMusica.getText();
         String compositor = tfCompositores.getText();
         String duracao = tfDuracao.getText();
 
-        return new Musica(nomeMusica,compositor,duracao);
+        m.add(new Musica(nomeMusica, compositor, duracao));
+
+        return m;
     }
-
-    public ArrayList<Musica> cadastrarMusica(){
-
-        ArrayList<Musica>musicas = new ArrayList<>();
-
-        musicas.add(addMusics());
-
-        return musicas;
-    }
-
 
     public void atualizaTela() {
         atualizaLista();
