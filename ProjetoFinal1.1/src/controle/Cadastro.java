@@ -45,38 +45,17 @@ public class Cadastro {
     private DatePicker dpDuracao;
     @FXML
     private ListView<Musica> ltvMusica;
-    private ObservableList<Musica> obsMusica;
-
     @FXML
     private TextArea verDescricao;
     @FXML
     private Text txtQtdMusicas;
 
     Albuns albuns = new Albuns();
-    ArrayList<Musica> mus = new ArrayList<>();
+    private ArrayList<Musica> mus = new ArrayList<>();
 
-    public TextField getTfNomeAlbum() {
-        return tfNomeAlbum;
-    }
 
-    public TextField getTfAnoLancamento() {
-        return tfAnoLancamento;
-    }
-
-    public TextField getTfNumeroDeMusicas() {
-        return tfNumeroDeMusicas;
-    }
-
-    public TextField getTfNomeMusica() {
-        return tfNomeMusica;
-    }
-
-    public TextField getTfCompositores() {
-        return tfCompositores;
-    }
-
-    public TextField getTfDuracao() {
-        return tfDuracao;
+    public ArrayList<Musica> getMus() {
+        return mus;
     }
 
     @FXML
@@ -90,14 +69,13 @@ public class Cadastro {
             Parent content = loader.load();
             dialog.getDialogPane().setContent(content);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.APPLY);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
             Optional<ButtonType> resultado = dialog.showAndWait();
 
-            if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
-                if (m != null)
-               // atualizaTela();
+           // if (resultado.isPresent() && resultado.get() == ButtonType.APPLY) {
+             //   if (m != null)
                 verDescricao.setText(m.toString());
-            }
+            //}
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -121,42 +99,45 @@ public class Cadastro {
     @FXML
     public Albuns coletaInfoAlbum(){
 
-
-
-
         String nomeAlbum = tfNomeAlbum.getText();
         Integer anoLancamento = Integer.parseInt(tfAnoLancamento.getText());
         Integer numeroMusicas = Integer.parseInt(tfNumeroDeMusicas.getText());
 
 
-
-        Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas,addMusics());
+        Albuns ab = new Albuns(nomeAlbum, anoLancamento, numeroMusicas,getMus());
 
         System.out.println(ab.toString());
         return ab;
     }
 
     @FXML
-    public ArrayList<Musica> addMusics() {
+    public void addMusics() {
 
-        ArrayList<Musica> m = new ArrayList<>();
         String nomeMusica = tfNomeMusica.getText();
         String compositor = tfCompositores.getText();
         String duracao = tfDuracao.getText();
 
-        m.add(new Musica(nomeMusica, compositor, duracao));
+        if(recebemusica(nomeMusica, compositor, duracao)){
+            atualizaTela();
+        }
+    }
 
-        return m;
+    public boolean recebemusica(String a, String b, String c){
+
+        if(mus.add(new Musica(a,b,c))){
+            return true;
+        }
+        return false;
     }
 
     public void atualizaTela() {
         atualizaLista();
-        txtQtdMusicas.setText("Total de Pessoas:" + albuns.getMusicas().size());
+        txtQtdMusicas.setText("Total de Pessoas:" + getMus().size());
     }
 
     private void atualizaLista(){
         ltvMusica.getItems().clear();
-        ltvMusica.getItems().addAll(albuns.getMusicas());
+        ltvMusica.getItems().addAll(getMus());
     }
 
 

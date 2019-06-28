@@ -45,6 +45,6 @@ public class Musica {
     }
 
     public String otoString() {
-        return "\n Nome: " + nome;
+        return nome;
     }
 }
