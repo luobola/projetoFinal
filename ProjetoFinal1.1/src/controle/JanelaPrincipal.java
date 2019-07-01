@@ -62,16 +62,15 @@ public class JanelaPrincipal {
 
             if (resultado.isPresent() && resultado.get() == ButtonType.APPLY){
                 Cadastro controle = loader.getController();
-
                 Albuns albuns = controle.coletaInfoAlbum();
-               // cadastro.atualizaTela();
+
             }
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
     @FXML
     private void sair(){
