@@ -21,8 +21,11 @@
                    <SeparatorMenuItem />
                    <MenuItem onAction="#sair" text="Sair" />
             </Menu>
-            <Menu text="Remover" />
+            <Menu text="Remover" >
+                <MenuItem text="Remover Banda"/>
+            </Menu>
             <Menu text="Buscar" />
         </menus>
     </MenuBar>
+
 </VBox>

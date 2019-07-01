@@ -58,6 +58,7 @@ public class Cadastro {
         return mus;
     }
 
+    /*
     @FXML
     private void acaoClickLista() {
         Musica m = ltvMusica.getSelectionModel().getSelectedItem();
@@ -80,7 +81,7 @@ public class Cadastro {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @FXML
     public AutorBanda coletaInformacao(){
